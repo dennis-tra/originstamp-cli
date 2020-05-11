@@ -115,3 +115,5 @@ fabric.properties
 
 # ignore artifacts
 artifacts/
+
+.DS_Store
