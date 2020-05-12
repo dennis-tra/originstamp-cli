@@ -7,8 +7,8 @@ Go client for the [OriginStamp API](https://api.originstamp.com/swagger/swagger-
 | Platform   | Installation |
 |---|:---|
 | MacOS | `brew tap dennis-tra/originstamp-cli`<br>`brew install originstamp-cli` |
-| Linux | Download the binary from the latest release. |
-| Windows | Download the binary from the latest release. |
+| Linux | Download the binary from the [latest release](https://github.com/dennis-tra/originstamp-cli/releases). |
+| Windows | Download the binary from the [latest release](https://github.com/dennis-tra/originstamp-cli/releases). |
 
 ## API-Key
 
@@ -73,13 +73,14 @@ Total number of credits per month:        50.0
 ---
 You have consumed 37.0% of your available credits
 ```
+
 ## Built With
 
 * [urfave/cli](https://github.com/urfave/cli) - The CLI framework
 
 ## Versioning
 
-This project uses [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+This project uses [SemVer](http://semver.org/) for versioning. For the versions available, see the [releases on this repository](https://github.com/dennis-tra/originstamp-cli/releases). 
 
 ## License
 
