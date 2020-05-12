@@ -2,7 +2,7 @@ ARTIFACTS_DIR=artifacts/${VERSION}
 GITHUB_USERNAME=dennis-tra
 ENTRY_POINT=cmd/stamp/main.go
 VERSION=`cat VERSION`
-TARGETS=darwin # windows linux
+TARGETS=darwin windows linux
 
 $(TARGETS): version
 	GOOS=$@ GOARCH=amd64 go build -o $(ARTIFACTS_DIR)/stamp_$@_amd64 $(ENTRY_POINT)
