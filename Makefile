@@ -6,6 +6,7 @@ TARGETS=darwin windows linux
 
 $(TARGETS): version
 	GOOS=$@ GOARCH=amd64 go build -o $(ARTIFACTS_DIR)/stamp_$@_amd64 $(ENTRY_POINT)
+	tar -czvf $(ARTIFACTS_DIR)/stamp_$@_amd64.tar.gz $(ARTIFACTS_DIR)/stamp_$@_amd64
 
 .PHONY: build
 build: $(TARGETS)
@@ -24,5 +25,5 @@ clean:
 
 .PHONY: release
 release: build
-	hub release create -p $(foreach target,$(TARGETS),-a $(ARTIFACTS_DIR)/stamp_$(target)_amd64) $(VERSION)
+	hub release create -p $(foreach target,$(TARGETS),-a $(ARTIFACTS_DIR)/stamp_$(target)_amd64.tar.gz) $(VERSION)
 
