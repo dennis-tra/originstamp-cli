@@ -1,3 +1,3 @@
 package pkg
 
-const VERSION = "{{ .Version }}"
+const version = "{{ .Version }}"

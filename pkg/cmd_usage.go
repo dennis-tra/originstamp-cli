@@ -3,10 +3,12 @@ package pkg
 import (
 	"context"
 	"fmt"
+
 	"github.com/dennis-tra/originstamp-cli/pkg/originstamp"
 	"github.com/urfave/cli/v2"
 )
 
+// UsageCmd defines the `proof` subcommand
 func UsageCmd() *cli.Command {
 	return &cli.Command{
 		Name:        "usage",
@@ -16,9 +18,10 @@ func UsageCmd() *cli.Command {
 	}
 }
 
+// UsageAction contains the logic for the `usage` subcommand.
 func UsageAction(ctx *cli.Context) error {
 
-	apiKey := ctx.String(FLAG_API_KEY)
+	apiKey := ctx.String(flagAPIKey)
 
 	c := originstamp.NewClient(apiKey)
 

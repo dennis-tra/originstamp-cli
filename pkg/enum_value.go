@@ -5,12 +5,14 @@ import (
 	"strings"
 )
 
+// EnumValue is used for command line flags that can only hold certain values
 type EnumValue struct {
 	Enum     []string
 	Default  string
 	selected string
 }
 
+// Set is used to make sure only allowed values are set
 func (e *EnumValue) Set(value string) error {
 	for _, enum := range e.Enum {
 		if enum == value {

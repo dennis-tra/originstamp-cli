@@ -3,13 +3,15 @@ package pkg
 import (
 	"context"
 	"fmt"
+
 	"github.com/dennis-tra/originstamp-cli/pkg/originstamp"
 	"github.com/urfave/cli/v2"
 )
 
+// StampAction contains the logic for the `stamp` subcommand.
 func StampAction(ctx *cli.Context) error {
 
-	apiKey := ctx.String(FLAG_API_KEY)
+	apiKey := ctx.String(flagAPIKey)
 
 	c := originstamp.NewClient(apiKey)
 
@@ -21,7 +23,7 @@ func StampAction(ctx *cli.Context) error {
 	}
 
 	opts := &originstamp.CreateOptions{
-		Comment: ctx.String(FLAG_COMMENT),
+		Comment: ctx.String(flagComment),
 	}
 
 	s := defaultSpinner(" Time stamping...")

@@ -1,33 +1,30 @@
 # OriginStamp CLI
-A CLI for the [OriginStamp API](https://api.originstamp.com/swagger/swagger-ui.html) written in Go.
+Go client for the [OriginStamp API](https://api.originstamp.com/swagger/swagger-ui.html).
 
 ## Installation
 
-### Mac OS
-```shell script
-# Installation
-brew tap dennis-tra/originstamp-cli
-brew install originstamp-cli
 
-# timestamp your file
-stamp -k YOUR-API-KEY filename
-```
+| Platform   | Installation |
+|---|:---|
+| MacOS | `brew tap dennis-tra/originstamp-cli`<br>`brew install originstamp-cli` |
+| Linux | Download the binary from the latest release. |
+| Windows | Download the binary from the latest release. |
 
 ## API-Key
 
 Take your API-Key from the OriginStamp website and set the `ORIGINSTAMP_API_KEY` environment variable in your current shell session:
-```shell script
+```
 export ORIGINSTAMP_API_KEY=YOUR-API-KEY
 ``` 
-Alternatively put this line in your `.bashrc` (or equivalent) or provide it on a per command basis by providing the `-k` command line flag:
-```shell script
+Alternatively put the line above in your `.bashrc` (or equivalent) or provide it on a per-command-basis by providing the `-k` command line flag:
+```
 stamp -k YOUR-API-KEY filename
 ```
 
 ## Usage
 
 Create a timestamp for a file 
-```shell script
+```
 $ stamp filename
 Successfully initiated timestamp creation!
   CURRENCY |       STATUS |                 TIMESTAMP | TRANSACTION
@@ -39,7 +36,7 @@ SUEDKURIER |     RECEIVED |                           |
 ```
 
 Retrieve the status of a timestamp:
-```shell script
+```
 $ stamp status filename
   CURRENCY |       STATUS |                 TIMESTAMP | TRANSACTION
        --- |          --- |                       --- | ---
@@ -58,49 +55,24 @@ Possible status values are:
 |TAMPER_PROOF|The timestamp for your hash was successfully created.|
 
 As soon as the file is in the status of `TAMPER_PROOF` you can request the proof `PDF` or `SEED`
-```shell script
-$ stamp proof version
+```
+$ stamp proof filename
 https://api.originstamp.com/v3/timestamp/proof/download?token=LONG-TOKEN&name=certificate.Ethereum.file.pdf
 ```
 This will retrieve the `BITCOIN` `SEED` proof. If you want another combination just specify it via command line parameters:
-```shell script
-$ stamp proof --currency ETHEREUM --proof PDF version
+```
+$ stamp proof --currency ETHEREUM --proof PDF filename
 https://api.originstamp.com/v3/timestamp/proof/download?token=LONG-TOKEN&name=certificate.Ethereum.file.pdf
 ```
-
-
-### Help Output
-```shell script
-NAME:
-   stamp - create anonymous, tamper-proof timestamps for any digital content
-
-USAGE:
-   stamp [global options] command [command options] [arguments...]
-
-VERSION:
-   0.1.0
-
-AUTHOR:
-   Dennis Trautwein <dennis.trautwein@originstamp.com>
-
-COMMANDS:
-   usage    Retrieve information about the current api usage.
-   status   Retrieve timestamp information for a certain file
-   proof    Retrieve the timestamp proof for a certain file or hash
-   help, h  Shows a list of commands or help for one command
-
-GLOBAL OPTIONS:
-   --api-key value, -k value  The OriginStamp AG API-Key (also applies to all sub commands) [$ORIGINSTAMP_API_KEY]
-   --comment value, -c value  Comment (max. 256 chars) for the timestamp for indexing and searching (public)
-   --format value             Go layout of how to format timestamp when printed to the screen. See https://golang.org/pkg/time/#pkg-constants. Defaults to RFC3339. (default: "2006-01-02T15:04:05Z07:00")
-   --hash value               Provide the hash string instead of a file
-   --help, -h                 show help (default: false)
-   --version, -v              print the version (default: false)
-
-COPYRIGHT:
-   OriginStamp AG 2020
+Request your credit usage:
 ```
-
+$ stamp usage
+Consumed credits for the current month:   18.5
+Remaining credits for the current month:  31.5
+Total number of credits per month:        50.0
+---
+You have consumed 37.0% of your available credits
+```
 ## Built With
 
 * [urfave/cli](https://github.com/urfave/cli) - The CLI framework

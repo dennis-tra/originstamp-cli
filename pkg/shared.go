@@ -3,12 +3,13 @@ package pkg
 import (
 	"crypto/sha256"
 	"fmt"
-	"github.com/briandowns/spinner"
-	"github.com/dennis-tra/originstamp-cli/pkg/originstamp"
-	"github.com/urfave/cli/v2"
 	"io/ioutil"
 	"os"
 	"time"
+
+	"github.com/briandowns/spinner"
+	"github.com/dennis-tra/originstamp-cli/pkg/originstamp"
+	"github.com/urfave/cli/v2"
 )
 
 func defaultSpinner(suffix string) *spinner.Spinner {
@@ -18,7 +19,7 @@ func defaultSpinner(suffix string) *spinner.Spinner {
 }
 
 func parseHash(ctx *cli.Context) (string, error) {
-	hashStr := ctx.String(FLAG_HASH)
+	hashStr := ctx.String(flagHash)
 	if hashStr != "" {
 		return hashStr, nil
 	}
@@ -52,7 +53,7 @@ func printTimestampResponse(ctx *cli.Context, resp *originstamp.TimestampRespons
 	fmt.Printf("%10s | %12s | %25s | %s\n", "CURRENCY", "STATUS", "TIMESTAMP", "TRANSACTION")
 	fmt.Printf("%10s | %12s | %25s | %s\n", "---", "---", "---", "---")
 	for _, ts := range resp.Timestamps {
-		timestamp := ts.Timestamp().Format(ctx.String(FLAG_FORMAT))
+		timestamp := ts.Timestamp().Format(ctx.String(flagFormat))
 		if ts.SubmitStatus < originstamp.INCLUDED {
 			timestamp = ""
 		}

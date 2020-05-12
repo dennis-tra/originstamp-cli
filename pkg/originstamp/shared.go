@@ -28,7 +28,7 @@ func (c *Client) Request(ctx context.Context, method string, endpoint string, bo
 
 	req.Header.Add("Authorization", c.apiKey)
 	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("User-Agent", "OriginStampCLI/"+VERSION)
+	req.Header.Add("User-Agent", "OriginStampCLI/"+version)
 
 	resp, err := c.httpClient.Do(req)
 	if err != nil {

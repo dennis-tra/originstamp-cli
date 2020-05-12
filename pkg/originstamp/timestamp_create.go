@@ -27,7 +27,7 @@ type CreateOptions struct {
 	URL           string
 }
 
-//  You can submit your hash with this function. If your api key is valid, your hash is added to
+// TimestampCreate is used to submit your hash. If your api key is valid, your hash is added to
 // batch and is scheduled for timestamping. If the hash already exists, the created flag in the
 // response is set to false and the notification(s) of the current request will be totally ignored.
 // You are also able to submit additional information, such as comment or notification credentials.

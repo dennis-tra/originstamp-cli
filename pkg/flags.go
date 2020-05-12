@@ -1,10 +1,11 @@
 package pkg
 
+// Used command line flag constants
 const (
-	FLAG_API_KEY    = "api-key"
-	FLAG_COMMENT    = "comment"
-	FLAG_HASH       = "hash"
-	FLAG_FORMAT     = "format"
-	FLAG_CURRENCY   = "currency"
-	FLAG_PROOF_TYPE = "proof"
+	flagAPIKey    = "api-key"
+	flagComment   = "comment"
+	flagHash      = "hash"
+	flagFormat    = "format"
+	flagCurrency  = "currency"
+	flagProofType = "proof"
 )

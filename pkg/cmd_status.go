@@ -3,10 +3,12 @@ package pkg
 import (
 	"context"
 	"fmt"
+
 	"github.com/dennis-tra/originstamp-cli/pkg/originstamp"
 	"github.com/urfave/cli/v2"
 )
 
+// StatusCmd defines the `status` subcommand
 func StatusCmd() *cli.Command {
 	return &cli.Command{
 		Name:        "status",
@@ -14,7 +16,7 @@ func StatusCmd() *cli.Command {
 		Usage:       "Retrieve timestamp information for a certain file",
 		Flags: []cli.Flag{
 			&cli.StringFlag{
-				Name:     FLAG_HASH,
+				Name:     flagHash,
 				Usage:    "Provide the hash string instead of file",
 				Required: false,
 			},
@@ -23,9 +25,10 @@ func StatusCmd() *cli.Command {
 	}
 }
 
+// StatusAction contains the logic for the `status` subcommand.
 func StatusAction(ctx *cli.Context) error {
 
-	apiKey := ctx.String(FLAG_API_KEY)
+	apiKey := ctx.String(flagAPIKey)
 
 	hashStr, err := parseHash(ctx)
 	if err != nil {

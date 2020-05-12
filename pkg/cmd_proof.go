@@ -3,10 +3,12 @@ package pkg
 import (
 	"context"
 	"fmt"
+
 	"github.com/dennis-tra/originstamp-cli/pkg/originstamp"
 	"github.com/urfave/cli/v2"
 )
 
+// ProofCmd defines the `proof` subcommand
 func ProofCmd() *cli.Command {
 	return &cli.Command{
 		Name:        "proof",
@@ -14,12 +16,12 @@ func ProofCmd() *cli.Command {
 		Usage:       "Retrieve the timestamp proof for a certain file or hash",
 		Flags: []cli.Flag{
 			&cli.StringFlag{
-				Name:     FLAG_HASH,
-				Usage:    "Provide the hash string instead of file",
+				Name:     flagHash,
+				Usage:    "Provide the hash string instead of a file",
 				Required: false,
 			},
 			&cli.GenericFlag{
-				Name:     FLAG_CURRENCY,
+				Name:     flagCurrency,
 				Aliases:  []string{"c"},
 				Usage:    "The currency for which you want to download the proof",
 				Required: false,
@@ -31,7 +33,7 @@ func ProofCmd() *cli.Command {
 				HasBeenSet:  false,
 			},
 			&cli.GenericFlag{
-				Name:     FLAG_PROOF_TYPE,
+				Name:     flagProofType,
 				Aliases:  []string{"p"},
 				Usage:    "The proof type that you want to download",
 				Required: false,
@@ -45,16 +47,17 @@ func ProofCmd() *cli.Command {
 	}
 }
 
+// ProofAction contains the logic for the `proof` subcommand.
 func ProofAction(ctx *cli.Context) error {
 
-	apiKey := ctx.String(FLAG_API_KEY)
+	apiKey := ctx.String(flagAPIKey)
 
-	currency, err := originstamp.CurrencyFromString(ctx.String(FLAG_CURRENCY))
+	currency, err := originstamp.CurrencyFromString(ctx.String(flagCurrency))
 	if err != nil {
 		return err
 	}
 
-	proofType, err := originstamp.ProofTypeFromString(ctx.String(FLAG_PROOF_TYPE))
+	proofType, err := originstamp.ProofTypeFromString(ctx.String(flagProofType))
 	if err != nil {
 		return err
 	}
