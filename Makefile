@@ -2,14 +2,13 @@ ARTIFACTS_DIR=artifacts/${VERSION}
 GITHUB_USERNAME=dennis-tra
 ENTRY_POINT=cmd/stamp/main.go
 VERSION=`cat VERSION`
+TARGETS=darwin # windows linux
 
-.PHONY: install
-install: version
-	go install $(ENTRY_POINT)
+$(TARGETS): version
+	GOOS=$@ GOARCH=amd64 go build -o $(ARTIFACTS_DIR)/stamp_$@_amd64 $(ENTRY_POINT)
 
 .PHONY: build
-build: version
-	go build $(ENTRY_POINT)
+build: $(TARGETS)
 
 .PHONY: test
 test:
@@ -19,9 +18,11 @@ test:
 version:
 	go run cmd/version/version.go
 
+.PHONY: clean
+clean:
+	rm -r artifacts
+
 .PHONY: release
-release: version
-	GOOS=windows GOARCH=amd64 go build -o $(ARTIFACTS_DIR)/stamp_windows_amd64 $(ENTRY_POINT)
-	GOOS=darwin GOARCH=amd64 go build -o $(ARTIFACTS_DIR)/stamp_darwin_amd64 $(ENTRY_POINT)
-	GOOS=linux GOARCH=amd64 go build -o $(ARTIFACTS_DIR)/stamp_linux_amd64 $(ENTRY_POINT)
-	hub release create -p -a $(ARTIFACTS_DIR)/stamp_windows_amd64 -a $(ARTIFACTS_DIR)/stamp_darwin_amd64 -a $(ARTIFACTS_DIR)/stamp_linux_amd64 $(VERSION)
+release: build
+	hub release create -p $(foreach target,$(TARGETS),-a $(ARTIFACTS_DIR)/stamp_$(target)_amd64) $(VERSION)
+

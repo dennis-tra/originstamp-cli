@@ -1,5 +1,5 @@
-# originstamp-cli
-A CLI for the OriginStamp API written in Go.
+# OriginStamp CLI
+A CLI for the [OriginStamp API](https://api.originstamp.com/swagger/swagger-ui.html) written in Go.
 
 ## Installation
 
@@ -10,25 +10,25 @@ brew tap dennis-tra/originstamp-cli
 brew install originstamp-cli
 
 # timestamp your file
-stamp -k <YOUR-API-KEY> test-file.txt
+stamp -k YOUR-API-KEY filename
 ```
 
 ## API-Key
 
 Take your API-Key from the OriginStamp website and set the `ORIGINSTAMP_API_KEY` environment variable in your current shell session:
 ```shell script
-export ORIGINSTAMP_API_KEY=<YOUR-API-KEY>
+export ORIGINSTAMP_API_KEY=YOUR-API-KEY
 ``` 
 Alternatively put this line in your `.bashrc` (or equivalent) or provide it on a per command basis by providing the `-k` command line flag:
 ```shell script
-stamp -k <YOUR-API-KEY> test-file.txt
+stamp -k YOUR-API-KEY filename
 ```
 
 ## Usage
 
-Create a timestamp for a file (e.g. `filename.txt`) 
+Create a timestamp for a file 
 ```shell script
-$ stamp filename.txt
+$ stamp filename
 Successfully initiated timestamp creation!
   CURRENCY |       STATUS |                 TIMESTAMP | TRANSACTION
        --- |          --- |                       --- | ---
@@ -40,7 +40,7 @@ SUEDKURIER |     RECEIVED |                           |
 
 Retrieve the status of a timestamp:
 ```shell script
-$ stamp status filename.txt
+$ stamp status filename
   CURRENCY |       STATUS |                 TIMESTAMP | TRANSACTION
        --- |          --- |                       --- | ---
    BITCOIN |     RECEIVED |                           |
@@ -107,7 +107,7 @@ COPYRIGHT:
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+This project uses [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## License
 
