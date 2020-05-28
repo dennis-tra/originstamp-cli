@@ -1,12 +1,12 @@
 # OriginStamp CLI
-Go client for the [OriginStamp API](https://api.originstamp.com/swagger/swagger-ui.html).
+Command line client for the [OriginStamp API](https://api.originstamp.com/swagger/swagger-ui.html) written in Go.
 
 ## Installation
 
 
 | Platform   | Installation |
 |---|:---|
-| MacOS | `brew tap dennis-tra/originstamp-cli`<br>`brew install originstamp-cli` |
+| MacOS | `brew tap dennis-tra/originstamp-cli && brew install originstamp-cli` |
 | Linux | Download the binary from the [latest release](https://github.com/dennis-tra/originstamp-cli/releases). |
 | Windows | Download the binary from the [latest release](https://github.com/dennis-tra/originstamp-cli/releases). |
 
